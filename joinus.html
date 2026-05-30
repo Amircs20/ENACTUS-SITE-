@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join Enactus ISTIC - Apply to be part of our student entrepreneurship organization.">
+    <title>Join Us | Enactus ISTIC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="navbar navbar-expand-md p-2 sticky-top custom-nav">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="../index.html">
+            <img src="../assets/images/logo.jpg" alt="Enactus ISTIC" class="rounded-circle logo-nav border border-dark">
+        </a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav align-items-center">
+                <li class="nav-item"><a href="../index.html" class="nav-link">HOME</a></li>
+                <li class="nav-item"><a href="events.html" class="nav-link">EVENTS</a></li>
+                <li class="nav-item"><a href="../index.html#about" class="nav-link">ABOUT US</a></li>
+                <li class="nav-item"><a href="../index.html#partners" class="nav-link">PARTNERS</a></li>
+            </ul>
+        </div>
+        <div class="d-none d-md-block">
+            <a href="joinus.html" class="btn-join active" style="background:#111;color:var(--yellow,#ffc107);">JOIN US</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ============ JOIN SECTION ============ -->
+<div class="container py-5 mt-3">
+    <div class="row align-items-center g-5">
+
+        <!-- FORM -->
+        <div class="col-lg-6">
+            <div class="mb-4">
+                <span class="badge bg-warning text-dark mb-2">RECRUITMENT 2025-2026</span>
+                <h1 class="fw-bold display-5">BE THE <span class="text-warning">CHANGE.</span></h1>
+                <p class="text-secondary mt-2">Join the social entrepreneurship adventure at ISTIC. Make an impact.</p>
+            </div>
+
+            <form id="joinForm" novalidate>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label text-warning fw-bold small">LAST NAME</label>
+                        <input type="text" class="form-control" placeholder="Last name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label text-warning fw-bold small">FIRST NAME</label>
+                        <input type="text" class="form-control" placeholder="First name" required>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label text-warning fw-bold small">EMAIL</label>
+                        <input type="email" class="form-control" placeholder="email@istic.u-carthage.tn" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label text-warning fw-bold small">PROGRAM</label>
+                        <select class="form-select" required>
+                            <option selected disabled value="">Select...</option>
+                            <option>GLSI</option>
+                            <option>ISI</option>
+                            <option>LAII</option>
+                            <option>IT</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label text-warning fw-bold small">PHONE</label>
+                        <input type="tel" class="form-control" placeholder="+216 XX XXX XXX" required>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label text-warning fw-bold small">PRIORITY SOCIAL CAUSE</label>
+                        <select class="form-select">
+                            <option>Education for All</option>
+                            <option>Environmental Protection</option>
+                            <option>Support for Vulnerable Communities</option>
+                            <option>Social Tech Innovation</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label text-warning fw-bold small">YOUR MOTIVATION</label>
+                        <textarea class="form-control" rows="4" placeholder="Why do you want to become an Enacteur?"></textarea>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <button type="submit" class="btn-enactus">
+                            <i class="fas fa-paper-plane me-2"></i> Submit My Application
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Success message (hidden) -->
+            <div id="successMsg" class="alert alert-warning mt-3 d-none fw-bold text-center rounded-3">
+                <i class="fas fa-check-circle me-2"></i> Application submitted! We'll be in touch soon.
+            </div>
+        </div>
+
+        <!-- IMAGE -->
+        <div class="col-lg-6 d-none d-lg-flex flex-column align-items-center gap-4">
+            <div style="position:relative;">
+                <img src="../assets/images/enactus-recru.png" alt="Join Enactus" class="img-fluid rounded-4 shadow-lg" style="border:2px solid rgba(255,193,7,0.3); max-height: 480px; object-fit: cover;">
+                <div style="position:absolute;bottom:-12px;right:-12px;width:80px;height:80px;background:rgba(255,193,7,0.2);border-radius:16px;z-index:-1;"></div>
+            </div>
+            <!-- Benefits -->
+            <div class="rounded-4 p-4 w-100" style="background: rgba(255,193,7,0.06); border: 1px solid rgba(255,193,7,0.2);">
+                <h5 class="text-warning fw-bold mb-3">Why Join Us?</h5>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2 text-light d-flex gap-2"><i class="fas fa-star text-warning mt-1 flex-shrink-0"></i> Build leadership & entrepreneurship skills</li>
+                    <li class="mb-2 text-light d-flex gap-2"><i class="fas fa-star text-warning mt-1 flex-shrink-0"></i> Work on real social impact projects</li>
+                    <li class="mb-2 text-light d-flex gap-2"><i class="fas fa-star text-warning mt-1 flex-shrink-0"></i> Network with companies and professionals</li>
+                    <li class="text-light d-flex gap-2"><i class="fas fa-star text-warning mt-1 flex-shrink-0"></i> Represent Tunisia in international competitions</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="pt-5 pb-3 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <img src="../assets/images/logo.jpg" alt="Enactus ISTIC" style="width:40px;height:40px;border-radius:50%;object-fit:cover;">
+                    <h5 class="fw-bold mb-0">Enactus ISTIC</h5>
+                </div>
+                <p class="small">Entrepreneurial action for a better world.</p>
+            </div>
+            <div class="col-md-4 mb-4 text-center">
+                <h5 class="fw-bold">Follow Us</h5>
+                <div class="social-footer fs-4 mt-2">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4 text-md-end">
+                <h5 class="fw-bold">Contact</h5>
+                <p class="small mb-0"><i class="fas fa-envelope me-1"></i> istic@enactus.tn</p>
+                <p class="small"><i class="fas fa-map-marker-alt me-1"></i> Ariana, Tunisia</p>
+            </div>
+        </div>
+        <hr class="border-dark">
+        <p class="text-center small mb-0">&copy; 2026 Enactus ISTIC. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.getElementById('joinForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    document.getElementById('successMsg').classList.remove('d-none');
+    this.reset();
+    this.scrollIntoView({ behavior: 'smooth' });
+});
+</script>
+</body>
+</html>
