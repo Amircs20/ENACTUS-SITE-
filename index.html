@@ -7,15 +7,443 @@
     <title>Enactus ISTIC</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link href="style.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000000;
+            font-family: system-ui, 'Segoe UI', 'Poppins', 'Roboto', sans-serif;
+            color: #f0f0f0;
+            overflow-x: hidden;
+        }
+
+        /* custom navbar */
+        .custom-nav {
+            background-color: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(252, 195, 3, 0.1);
+            border-bottom: 1px solid rgba(252, 195, 3, 0.2);
+        }
+        .navbar-brand img {
+            width: 48px;
+            height: 48px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .navbar-brand img:hover {
+            transform: scale(1.05);
+        }
+        .nav-link {
+            color: #fff !important;
+            font-weight: 600;
+            margin: 0 12px;
+            letter-spacing: 0.5px;
+            transition: 0.3s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #fcc203 !important;
+            text-shadow: 0 0 5px rgba(252,195,3,0.4);
+        }
+        .btn-join {
+            background: linear-gradient(135deg, #fcc203, #e6a800);
+            color: #000;
+            font-weight: bold;
+            padding: 8px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 0 12px rgba(252,195,3,0.5);
+        }
+        .btn-join:hover {
+            transform: scale(1.05);
+            background: #ffcd42;
+            color: #000;
+            box-shadow: 0 0 20px #fcc203;
+        }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at 20% 30%, #0a0f1a, #000000);
+            overflow: hidden;
+        }
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .star-light {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: twinkle 3s infinite alternate;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(1);}
+            100% { opacity: 1; transform: scale(1.2);}
+        }
+        .star-light:nth-child(1) { width: 3px; height: 3px; top: 12%; left: 20%; animation-duration: 2s; }
+        .star-light:nth-child(2) { width: 2px; height: 2px; top: 45%; left: 85%; animation-duration: 3s; }
+        .star-light:nth-child(3) { width: 4px; height: 4px; top: 70%; left: 15%; animation-duration: 2.5s; }
+        .star-light:nth-child(4) { width: 2px; height: 2px; top: 88%; left: 60%; animation-duration: 1.8s; }
+        .star-light:nth-child(5) { width: 3px; height: 3px; top: 30%; left: 55%; animation-duration: 2.2s; }
+        .glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(252,195,3,0.15), transparent);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero-content {
+            z-index: 3;
+            padding: 20px;
+        }
+        .hero-logo {
+            width: 130px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 8px gold);
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        .since {
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 5px;
+            color: #fcc203;
+            margin-top: 10px;
+        }
+        .desc {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 20px auto;
+            color: #ccc;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .btn-outline-hero, .btn-fill-hero {
+            text-decoration: none;
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .btn-outline-hero {
+            border: 2px solid #fcc203;
+            color: #fcc203;
+            background: transparent;
+        }
+        .btn-outline-hero:hover {
+            background: #fcc203;
+            color: #000;
+            box-shadow: 0 0 15px gold;
+        }
+        .btn-fill-hero {
+            background: #fcc203;
+            color: #000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .btn-fill-hero:hover {
+            background: #ffdc73;
+            transform: scale(1.02);
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .scroll-indicator span {
+            width: 25px;
+            height: 4px;
+            background: #fcc203;
+            border-radius: 4px;
+            animation: scrollanim 1.5s infinite;
+        }
+        @keyframes scrollanim {
+            0% { opacity: 0.2; transform: translateY(0);}
+            50% { opacity: 1; transform: translateY(5px);}
+            100% { opacity: 0.2; transform: translateY(0);}
+        }
+
+        /* stats */
+        .stats-section {
+            background: #0c0c0c;
+            padding: 60px 0;
+            border-top: 1px solid rgba(252,195,3,0.2);
+            border-bottom: 1px solid rgba(252,195,3,0.2);
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #fcc203;
+        }
+        .stat-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #aaa;
+        }
+
+        /* about */
+        .about-section {
+            padding: 80px 0;
+            background: #000000;
+        }
+        .ls-2 { letter-spacing: 2px; }
+        .text-secondary { color: #b0b0b0 !important; }
+
+        /* team carousel */
+        .team-section {
+            background: #050505;
+            padding: 80px 0;
+        }
+        .team-card {
+            background: rgba(20,20,20,0.8);
+            backdrop-filter: blur(4px);
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 1px solid rgba(252,195,3,0.2);
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
+        }
+        .team-card:hover {
+            transform: translateY(-8px);
+            border-color: #fcc203;
+        }
+        .team-img-container {
+            overflow: hidden;
+            background: #1e1e1e;
+        }
+        .team-img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+        .team-card:hover .team-img {
+            transform: scale(1.05);
+        }
+        .role-title {
+            color: #fcc203;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-top: 12px;
+            font-size: 0.85rem;
+        }
+        .member-name {
+            font-weight: 700;
+            color: white;
+            font-size: 1rem;
+        }
+        .social-icons a {
+            color: #bbb;
+            margin: 0 8px;
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
+        .social-icons a:hover {
+            color: #fcc203;
+        }
+        .custom-arrow {
+            background-color: #fcc203;
+            border-radius: 50%;
+            padding: 14px;
+            opacity: 0.8;
+        }
+        .carousel-control-prev, .carousel-control-next {
+            width: 5%;
+        }
+
+        /* gallery */
+        .gallery-section {
+            padding: 70px 0;
+            background: #030303;
+        }
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 20px;
+            cursor: pointer;
+            border: 1px solid rgba(252,195,3,0.3);
+            transition: 0.3s;
+        }
+        .gallery-item img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            transition: 0.4s;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.06);
+        }
+
+        /* partners */
+        .partners-section {
+            background: #000;
+            padding: 70px 0;
+        }
+        .partner-card {
+            background: #121212;
+            padding: 20px;
+            border-radius: 30px;
+            transition: 0.3s;
+            border: 1px solid #2a2a2a;
+        }
+        .partner-card img {
+            max-width: 100%;
+            max-height: 80px;
+            object-fit: contain;
+            filter: brightness(0.9);
+        }
+        .partner-card:hover {
+            border-color: #fcc203;
+            transform: scale(1.02);
+        }
+
+        /* video section */
+        .video-section {
+            padding: 70px 0;
+            background: #020202;
+        }
+        .ratio video {
+            object-fit: cover;
+        }
+
+        /* sdg wheel custom */
+        .wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+            align-items: center;
+        }
+        .wheel-wrap {
+            flex: 1;
+            min-width: 320px;
+            display: flex;
+            justify-content: center;
+        }
+        #wheel {
+            width: 100%;
+            max-width: 520px;
+            height: auto;
+            cursor: pointer;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6));
+        }
+        .seg {
+            cursor: pointer;
+            transition: filter 0.2s;
+        }
+        .seg:hover {
+            filter: brightness(1.1);
+        }
+        .info-card {
+            flex: 1;
+            background: rgba(20,20,30,0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 36px;
+            padding: 28px;
+            border: 1px solid #fcc20340;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-width: 280px;
+        }
+        .sdg-label {
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        .sdg-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 10px 0;
+        }
+        .sdg-desc {
+            color: #ccc;
+            line-height: 1.4;
+        }
+        .explore-btn {
+            display: inline-block;
+            margin-top: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 2px solid;
+            padding-bottom: 4px;
+            transition: 0.2s;
+        }
+        .targets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px,1fr));
+            gap: 16px;
+            margin-top: 12px;
+        }
+        .target {
+            background: #00000066;
+            border-radius: 18px;
+            padding: 12px;
+            border-left: 4px solid;
+        }
+        .target-label {
+            font-weight: 800;
+            font-size: 1rem;
+        }
+        .target-desc {
+            font-size: 0.8rem;
+            color: #bbb;
+        }
+        .footer a {
+            color: #fcc203;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .social-footer a {
+            color: white;
+            margin: 0 12px;
+            transition: 0.2s;
+        }
+        .social-footer a:hover {
+            color: #fcc203;
+        }
+        @media (max-width:768px) {
+            .hero h1 { font-size: 2rem; }
+            .wrap { flex-direction: column; }
+        }
+    </style>
 </head>
 <body>
 
-<!-- ============ NAVBAR ============ -->
+<!-- NAVBAR -->
 <nav class="navbar navbar-expand-md p-2 sticky-top custom-nav">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.html">
-            <img src="logo.jpg" alt="Enactus ISTIC" class="rounded-circle logo-nav border border-dark">
+            <img src="logo.jpg" alt="Enactus ISTIC" class="rounded-circle border border-dark" style="width:48px;height:48px;object-fit:cover;">
         </a>
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -34,28 +462,24 @@
     </div>
 </nav>
 
-<!-- ============ HERO ============ -->
+<!-- HERO -->
 <section class="hero">
     <div class="stars">
-        <span class="star-light"></span>
-        <span class="star-light"></span>
-        <span class="star-light"></span>
-        <span class="star-light"></span>
-        <span class="star-light"></span>
+        <span class="star-light"></span><span class="star-light"></span><span class="star-light"></span><span class="star-light"></span><span class="star-light"></span>
     </div>
     <div class="glow"></div>
     <div class="hero-content">
-        <img src="hero-logo.png" alt="Enactus Logo" class="hero-logo">
+        <img src="hero-logo.png" alt="Enactus Logo" class="hero-logo" onerror="this.src='https://placehold.co/130x130?text=ENACTUS'">
         <h1>
             <span style="color:#fcc203;">ENACTUS</span><br>
-            <span id="typed-text" style="color:#fff; display:inline-block; white-space:nowrap;"></span>
+            <span id="typed-text" style="color:#fff; display:inline-block;"></span>
             <span class="cursor" style="color:#fff;">|</span>
         </h1>
         <p class="since">SINCE 2017</p>
         <p class="desc">Empowering students through entrepreneurship, innovation and social impact.</p>
         <div class="hero-buttons">
             <a href="#about" class="btn-outline-hero">Discover Us</a>
-            <a href="pages/joinus.html" class="btn-fill-hero">Join Us</a>
+            <a href="joinus.html" class="btn-fill-hero">Join Us</a>
         </div>
     </div>
     <div class="scroll-indicator">
@@ -63,75 +487,48 @@
     </div>
 </section>
 
-<!-- ============ STATS ============ -->
+<!-- STATS -->
 <section class="stats-section">
     <div class="container">
         <div class="row g-4 justify-content-center text-center">
-            <div class="col-6 col-md-3">
-                <div class="stat-item">
-                    <div class="stat-number">2017</div>
-                    <div class="stat-label">Founded</div>
-                </div>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="stat-item">
-                    <div class="stat-number">30+</div>
-                    <div class="stat-label">Countries</div>
-                </div>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="stat-item">
-                    <div class="stat-number">120+</div>
-                    <div class="stat-label">Members</div>
-                </div>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="stat-item">
-                    <div class="stat-number">10+</div>
-                    <div class="stat-label">Projects</div>
-                </div>
-            </div>
+            <div class="col-6 col-md-3"><div class="stat-item"><div class="stat-number">2017</div><div class="stat-label">Founded</div></div></div>
+            <div class="col-6 col-md-3"><div class="stat-item"><div class="stat-number">30+</div><div class="stat-label">Countries</div></div></div>
+            <div class="col-6 col-md-3"><div class="stat-item"><div class="stat-number">120+</div><div class="stat-label">Members</div></div></div>
+            <div class="col-6 col-md-3"><div class="stat-item"><div class="stat-number">10+</div><div class="stat-label">Projects</div></div></div>
         </div>
     </div>
 </section>
 
-<!-- ============ ABOUT ============ -->
+<!-- ABOUT -->
 <section class="about-section" id="about">
     <div class="container">
         <div class="row align-items-center g-5">
             <div class="col-md-6">
                 <h5 class="text-warning text-uppercase fw-bold ls-2">Who We Are</h5>
                 <h2 class="display-5 fw-bold mb-4">Entrepreneurial <span class="text-warning">Action</span> for Others</h2>
-                <p class="lead text-light">
-                    Enactus ISTIC is a committed student organization, part of the international Enactus network present in over 30 countries.
-                </p>
-                <p class="text-secondary mt-3">
-                    Our mission is to transform ideas into concrete actions by developing sustainable entrepreneurial projects that address social, economic and environmental challenges.
-                </p>
+                <p class="lead text-light">Enactus ISTIC is a committed student organization, part of the international Enactus network present in over 30 countries.</p>
+                <p class="text-secondary mt-3">Our mission is to transform ideas into concrete actions by developing sustainable entrepreneurial projects that address social, economic and environmental challenges.</p>
                 <div class="mt-4 d-flex flex-wrap gap-3">
                     <a href="#sdg" class="btn btn-warning btn-lg fw-bold rounded-pill px-4">Our Impact</a>
                     <a href="events.html" class="btn btn-outline-warning btn-lg fw-bold rounded-pill px-4">Explore Events</a>
                 </div>
             </div>
             <div class="col-md-6 text-center">
-                <img src="family.jpg" alt="Enactus ISTIC Team" class="img-fluid rounded-4 shadow-lg border border-warning">
+                <img src="family.jpg" alt="Enactus ISTIC Team" class="img-fluid rounded-4 shadow-lg border border-warning" onerror="this.src='https://placehold.co/600x400?text=Enactus+Team'">
             </div>
         </div>
     </div>
 </section>
 
-<!-- ============ SDG SECTION ============ -->
+<!-- SDG SECTION -->
 <section class="py-5" id="sdg" style="background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);">
     <div class="container">
         <div class="text-center mb-5">
             <h5 class="text-warning text-uppercase fw-bold">Our Impact</h5>
             <h2 class="display-5 fw-bold">Sustainable Development Goals</h2>
-            <p class="text-secondary col-lg-7 mx-auto mt-3">
-                Every project we build is aligned with the UN Sustainable Development Goals to create real, lasting impact.
-            </p>
+            <p class="text-secondary col-lg-7 mx-auto mt-3">Every project we build is aligned with the UN Sustainable Development Goals to create real, lasting impact.</p>
         </div>
         <div class="wrap">
-            <h2 class="visually-hidden">UN SDG Interactive Wheel — click any goal</h2>
             <div class="wheel-wrap">
                 <svg id="wheel" viewBox="0 0 520 520" xmlns="http://www.w3.org/2000/svg"></svg>
             </div>
@@ -148,7 +545,7 @@
     </div>
 </section>
 
-<!-- ============ VIDEO ============ -->
+<!-- VIDEO SECTION -->
 <section class="video-section" id="video">
     <div class="container">
         <div class="text-center mb-4">
@@ -156,105 +553,42 @@
             <h2 class="fw-bold">OUR WORK IN ACTION</h2>
         </div>
         <div class="ratio ratio-16x9 shadow-lg border border-warning rounded-4 overflow-hidden">
-            <video controls poster="assets/images/background.jpg">
-                <source src="assets/videos/main-video.mp4" type="video/mp4">
+            <video controls poster="background.jpg">
+                <source src="main-video.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
     </div>
 </section>
 
-<!-- ============ EXECUTIVE COMMITTEE ============ -->
+<!-- EXECUTIVE COMMITTEE -->
 <section class="team-section" id="team">
     <div class="container text-center">
         <h5 class="text-warning text-uppercase fw-bold">Meet The Team</h5>
         <h2 class="fw-bold mb-3">EXECUTIVE COMMITTEE 2025–2026</h2>
-        <img class="img-fluid rounded-4 mt-4 mb-5 border border-warning border-opacity-25" src="assets/images/background.jpg" alt="Executive Committee" style="max-height:350px; object-fit:cover; width:100%;">
-
+        <img class="img-fluid rounded-4 mt-4 mb-5 border border-warning border-opacity-25" src="background.jpg" alt="Executive Committee" style="max-height:350px; object-fit:cover; width:100%;" onerror="this.src='https://placehold.co/1200x350?text=Enactus+Committee'">
         <div id="teamCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <!-- SLIDE 1 -->
                 <div class="carousel-item active">
                     <div class="row g-4 justify-content-center">
                         <div class="col-lg-3 col-md-6">
-                            <div class="team-card">
-                                <div class="team-img-container">
-                                    <img src="amir.png" class="team-img" alt="Mohamed Amir Laouini - Team Leader">
-                                </div>
-                                <div class="card-body pb-3">
-                                    <p class="role-title">TEAM LEADER</p>
-                                    <p class="member-name">MOHAMED AMIR LAOUINI</p>
-                                    <div class="social-icons">
-                                        <a href="#" class="contact-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                                        <a href="mailto:example@enactus.istic.tn" class="contact-icon" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="team-card"><div class="team-img-container"><img src="amir.png" class="team-img" alt="Team Leader" onerror="this.src='https://placehold.co/300x300?text=Amir'"></div><div class="card-body pb-3"><p class="role-title">TEAM LEADER</p><p class="member-name">MOHAMED AMIR LAOUINI</p><div class="social-icons"><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="mailto:team@enactus.istic.tn" aria-label="Email"><i class="fas fa-envelope"></i></a></div></div></div>
                         </div>
                         <div class="col-lg-3 col-md-6">
-                            <div class="team-card">
-                                <div class="team-img-container">
-                                    <img src="ahd.png" class="team-img" alt="Ahd Bouraoui - General Secretary">
-                                </div>
-                                <div class="card-body pb-3">
-                                    <p class="role-title">GENERAL SECRETARY</p>
-                                    <p class="member-name">AHD BOURAOUI</p>
-                                    <div class="social-icons">
-                                        <a href="#" class="contact-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                                        <a href="mailto:example@enactus.istic.tn" class="contact-icon" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="team-card"><div class="team-img-container"><img src="ahd.png" class="team-img" alt="Secretary" onerror="this.src='https://placehold.co/300x300?text=Ahd'"></div><div class="card-body pb-3"><p class="role-title">GENERAL SECRETARY</p><p class="member-name">AHD BOURAOUI</p><div class="social-icons"><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="mailto:secretary@enactus.istic.tn"><i class="fas fa-envelope"></i></a></div></div></div>
                         </div>
                         <div class="col-lg-3 col-md-6">
-                            <div class="team-card">
-                                <div class="team-img-container">
-                                    <img src="rayen.png" class="team-img" alt="Rayen Hafsi - Vice Team Leader Projects">
-                                </div>
-                                <div class="card-body pb-3">
-                                    <p class="role-title">VTL PROJECTS</p>
-                                    <p class="member-name">RAYEN HAFSI</p>
-                                    <div class="social-icons">
-                                        <a href="#" class="contact-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                                        <a href="mailto:example@enactus.istic.tn" class="contact-icon" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="team-card"><div class="team-img-container"><img src="rayen.png" class="team-img" alt="VTL Projects" onerror="this.src='https://placehold.co/300x300?text=Rayen'"></div><div class="card-body pb-3"><p class="role-title">VTL PROJECTS</p><p class="member-name">RAYEN HAFSI</p><div class="social-icons"><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="mailto:projects@enactus.istic.tn"><i class="fas fa-envelope"></i></a></div></div></div>
                         </div>
                     </div>
                 </div>
-                <!-- SLIDE 2 -->
                 <div class="carousel-item">
                     <div class="row g-4 justify-content-center">
                         <div class="col-lg-3 col-md-6">
-                            <div class="team-card">
-                                <div class="team-img-container">
-                                    <img src="lina.png" class="team-img" alt="Lina Bani - Vice Team Leader Marketing">
-                                </div>
-                                <div class="card-body pb-3">
-                                    <p class="role-title">VTL MARKETING</p>
-                                    <p class="member-name">LINA BANI</p>
-                                    <div class="social-icons">
-                                        <a href="#" class="contact-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                                        <a href="mailto:example@enactus.istic.tn" class="contact-icon" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="team-card"><div class="team-img-container"><img src="lina.png" class="team-img" alt="VTL Marketing" onerror="this.src='https://placehold.co/300x300?text=Lina'"></div><div class="card-body pb-3"><p class="role-title">VTL MARKETING</p><p class="member-name">LINA BANI</p><div class="social-icons"><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="mailto:marketing@enactus.istic.tn"><i class="fas fa-envelope"></i></a></div></div></div>
                         </div>
                         <div class="col-lg-3 col-md-6">
-                            <div class="team-card">
-                                <div class="team-img-container">
-                                    <img src="fatma.png" class="team-img" alt="Fatma Ezzahra Azzabi - Vice Team Leader Finance">
-                                </div>
-                                <div class="card-body pb-3">
-                                    <p class="role-title">VTL FINANCE</p>
-                                    <p class="member-name">FATMA EZZAHRA AZZABI</p>
-                                    <div class="social-icons">
-                                        <a href="#" class="contact-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                                        <a href="mailto:example@enactus.istic.tn" class="contact-icon" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="team-card"><div class="team-img-container"><img src="fatma.png" class="team-img" alt="VTL Finance" onerror="this.src='https://placehold.co/300x300?text=Fatma'"></div><div class="card-body pb-3"><p class="role-title">VTL FINANCE</p><p class="member-name">FATMA EZZAHRA AZZABI</p><div class="social-icons"><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="mailto:finance@enactus.istic.tn"><i class="fas fa-envelope"></i></a></div></div></div>
                         </div>
                     </div>
                 </div>
@@ -269,52 +603,41 @@
     </div>
 </section>
 
-<!-- ============ GALLERY ============ -->
+<!-- GALLERY -->
 <section class="gallery-section" id="gallery">
     <div class="container">
-        <div class="text-center mb-5">
-            <h5 class="text-warning text-uppercase fw-bold">Memories</h5>
-            <h2 class="fw-bold">OUR GALLERY</h2>
-        </div>
+        <div class="text-center mb-5"><h5 class="text-warning text-uppercase fw-bold">Memories</h5><h2 class="fw-bold">OUR GALLERY</h2></div>
         <div class="row g-3">
-            <div class="col-6 col-md-4"><div class="gallery-item"><img src="g1.jpg" alt="Enactus event"></div></div>
-            <div class="col-6 col-md-4"><div class="gallery-item"><img src="g2.jpg" alt="Enactus event"></div></div>
-            <div class="col-6 col-md-4"><div class="gallery-item"><img src="g3.jpg" alt="Enactus event"></div></div>
-            <div class="col-6 col-md-4"><div class="gallery-item"><img src="g4.jpg" alt="Enactus members"></div></div>
-            <div class="col-6 col-md-4"><div class="gallery-item"><img src="g5.jpg" alt="Enactus activity"></div></div>
-            <div class="col-6 col-md-4"><div class="gallery-item"><img src="g.jpg" alt="Enactus team"></div></div>
+            <div class="col-6 col-md-4"><div class="gallery-item"><img src="g1.jpg" alt="Event" onerror="this.src='https://placehold.co/600x450?text=Event'"></div></div>
+            <div class="col-6 col-md-4"><div class="gallery-item"><img src="g2.jpg" alt="Event" onerror="this.src='https://placehold.co/600x450?text=Team'"></div></div>
+            <div class="col-6 col-md-4"><div class="gallery-item"><img src="g3.jpg" alt="Event" onerror="this.src='https://placehold.co/600x450?text=Workshop'"></div></div>
+            <div class="col-6 col-md-4"><div class="gallery-item"><img src="g4.jpg" alt="Members" onerror="this.src='https://placehold.co/600x450?text=Action'"></div></div>
+            <div class="col-6 col-md-4"><div class="gallery-item"><img src="g5.jpg" alt="Activity" onerror="this.src='https://placehold.co/600x450?text=Impact'"></div></div>
+            <div class="col-6 col-md-4"><div class="gallery-item"><img src="g.jpg" alt="Team" onerror="this.src='https://placehold.co/600x450?text=Community'"></div></div>
         </div>
     </div>
 </section>
 
-<!-- ============ PARTNERS ============ -->
+<!-- PARTNERS -->
 <section class="partners-section" id="partners">
     <div class="container text-center">
         <h5 class="text-warning text-uppercase fw-bold">Our Partners</h5>
         <h2 class="fw-bold mb-2">Trusted By Amazing Organizations</h2>
         <p class="text-secondary mb-5">We collaborate with institutions and companies that support innovation and social impact.</p>
         <div class="row g-4 justify-content-center align-items-center">
-            <div class="col-6 col-md-3">
-                <div class="partner-card">
-                    <img src="p1.jpg" alt="Partner 1">
-                </div>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="partner-card">
-                    <img src="maker.jpg" alt="Maker Partner">
-                </div>
-            </div>
+            <div class="col-6 col-md-3"><div class="partner-card"><img src="p1.jpg" alt="Partner 1" onerror="this.src='https://placehold.co/200x100?text=Partner'"></div></div>
+            <div class="col-6 col-md-3"><div class="partner-card"><img src="maker.jpg" alt="Maker Partner" onerror="this.src='https://placehold.co/200x100?text=Maker'"></div></div>
         </div>
     </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
-<footer class="pt-5 pb-3">
+<!-- FOOTER -->
+<footer class="pt-5 pb-3" style="background:#000;">
     <div class="container">
         <div class="row">
             <div class="col-md-4 mb-4">
                 <div class="d-flex align-items-center gap-2 mb-2">
-                    <img src="assets/images/logo.jpg" alt="Enactus ISTIC" style="width:40px;height:40px;border-radius:50%;object-fit:cover;">
+                    <img src="logo.jpg" alt="Enactus ISTIC" style="width:40px;height:40px;border-radius:50%;object-fit:cover;" onerror="this.src='https://placehold.co/40x40'">
                     <h5 class="fw-bold mb-0">Enactus ISTIC</h5>
                 </div>
                 <p class="small">Entrepreneurial action for a better world. Join us to make a difference.</p>
@@ -331,39 +654,35 @@
                 <h5 class="fw-bold">Contact</h5>
                 <p class="small mb-0"><i class="fas fa-envelope me-1"></i> istic@enactus.tn</p>
                 <p class="small mb-0"><i class="fas fa-map-marker-alt me-1"></i> Ariana, Tunisia</p>
-                <div class="mt-2">
-                    <a href="pages/joinus.html" class="btn btn-dark btn-sm fw-bold rounded-pill px-3">Join Us →</a>
-                </div>
+                <div class="mt-2"><a href="joinus.html" class="btn btn-dark btn-sm fw-bold rounded-pill px-3">Join Us →</a></div>
             </div>
         </div>
-        <hr class="border-dark">
-        <p class="text-center small mb-0">&copy; 2026 Enactus ISTIC. All rights reserved.</p>
+        <hr class="border-secondary"><p class="text-center small mb-0">&copy; 2026 Enactus ISTIC. All rights reserved.</p>
     </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-/* ---- TYPEWRITER ---- */
-const text = "ISTIC BORJ CEDRIA";
-const speed = 120, delayBetweenLoops = 1500;
-let i = 0, isDeleting = false;
+// typewriter
+const textStr = "ISTIC BORJ CEDRIA";
+let idx = 0, deleting = false;
+const typedSpan = document.getElementById("typed-text");
 function typeEffect() {
-    const el = document.getElementById("typed-text");
-    if (!isDeleting) {
-        el.innerHTML = text.substring(0, i + 1);
-        i++;
-        if (i === text.length) { isDeleting = true; setTimeout(typeEffect, delayBetweenLoops); return; }
+    if (!deleting) {
+        typedSpan.innerHTML = textStr.substring(0, idx + 1);
+        idx++;
+        if (idx === textStr.length) { deleting = true; setTimeout(typeEffect, 1500); return; }
     } else {
-        el.innerHTML = text.substring(0, i - 1);
-        i--;
-        if (i === 0) isDeleting = false;
+        typedSpan.innerHTML = textStr.substring(0, idx - 1);
+        idx--;
+        if (idx === 0) deleting = false;
     }
-    setTimeout(typeEffect, isDeleting ? 60 : speed);
+    setTimeout(typeEffect, deleting ? 60 : 120);
 }
 typeEffect();
 
-/* ---- SDG WHEEL ---- */
-const SDGs=[
+// SDG DATA
+const sdgList = [
 {id:1,name:"No Poverty",color:"#E5243B",desc:"End poverty in all its forms everywhere. Over 700 million people still live on less than $2.15 a day.",targets:[{n:"1.1",t:"Universal social protection"},{n:"1.2",t:"Equal rights to resources"},{n:"1.3",t:"Resilience to climate extremes"},{n:"1.4",t:"Mobilize development finance"}]},
 {id:2,name:"Zero Hunger",color:"#DDA63A",desc:"End hunger, achieve food security and improved nutrition, and promote sustainable agriculture.",targets:[{n:"2.1",t:"Universal food access"},{n:"2.2",t:"End malnutrition"},{n:"2.3",t:"Sustainable food systems"},{n:"2.4",t:"Resilient agriculture"}]},
 {id:3,name:"Good Health & Well-being",color:"#4C9F38",desc:"Ensure healthy lives and promote well-being for all at all ages.",targets:[{n:"3.1",t:"Reduce maternal mortality"},{n:"3.2",t:"End preventable child deaths"},{n:"3.3",t:"Combat communicable diseases"},{n:"3.4",t:"Universal health coverage"}]},
@@ -382,41 +701,34 @@ const SDGs=[
 {id:16,name:"Peace, Justice & Institutions",color:"#00689D",desc:"Promote peaceful and inclusive societies and provide access to justice for all.",targets:[{n:"16.1",t:"Reduce violence"},{n:"16.2",t:"Protect children"},{n:"16.3",t:"Access to justice"},{n:"16.4",t:"Effective institutions"}]},
 {id:17,name:"Partnerships for the Goals",color:"#19486A",desc:"Strengthen the means of implementation and revitalize the global partnership.",targets:[{n:"17.1",t:"Strengthen domestic finance"},{n:"17.2",t:"Technology transfer"},{n:"17.3",t:"Capacity building"},{n:"17.4",t:"Multi-stakeholder partnerships"}]}
 ];
-const iconURLs={1:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-01.jpg",2:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-02.jpg",3:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-03.jpg",4:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-04.jpg",5:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-05.jpg",6:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-06.jpg",7:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-07.jpg",8:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-08.jpg",9:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-09.jpg",10:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-10.jpg",11:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-11.jpg",12:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-12.jpg",13:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-13.jpg",14:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-14.jpg",15:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-15.jpg",16:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-16.jpg",17:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-17.jpg"};
-const svg=document.getElementById('wheel');
-const CX=260,CY=260,OR=240,MR=152,IR=105,N=17,GAP=0.018;
-function polarToCart(cx,cy,r,a){return[cx+r*Math.cos(a),cy+r*Math.sin(a)];}
-function arcPath(cx,cy,r1,r2,a1,a2){const p1=polarToCart(cx,cy,r2,a1),p2=polarToCart(cx,cy,r2,a2),p3=polarToCart(cx,cy,r1,a2),p4=polarToCart(cx,cy,r1,a1);return`M${p1[0]},${p1[1]} A${r2},${r2} 0 0,1 ${p2[0]},${p2[1]} L${p3[0]},${p3[1]} A${r1},${r1} 0 0,0 ${p4[0]},${p4[1]} Z`;}
-const startAngle=-Math.PI/2,sliceAngle=(2*Math.PI)/N;
-SDGs.forEach((sdg,i)=>{
-    const a1=startAngle+i*sliceAngle+GAP,a2=startAngle+(i+1)*sliceAngle-GAP,midA=(a1+a2)/2;
-    const g=document.createElementNS('http://www.w3.org/2000/svg','g');
-    g.setAttribute('class','seg');g.dataset.id=sdg.id;
-    const path=document.createElementNS('http://www.w3.org/2000/svg','path');
-    path.setAttribute('d',arcPath(CX,CY,MR,OR,a1,a2));path.setAttribute('fill',sdg.color);g.appendChild(path);
-    const innerPath=document.createElementNS('http://www.w3.org/2000/svg','path');
-    innerPath.setAttribute('d',arcPath(CX,CY,IR,MR-2,a1+GAP*2,a2-GAP*2));innerPath.setAttribute('fill',sdg.color);innerPath.setAttribute('opacity','0.35');g.appendChild(innerPath);
-    const numCircleR=MR-14,ncx=CX+numCircleR*Math.cos(midA),ncy=CY+numCircleR*Math.sin(midA);
-    const circ=document.createElementNS('http://www.w3.org/2000/svg','circle');
-    circ.setAttribute('cx',ncx);circ.setAttribute('cy',ncy);circ.setAttribute('r',13);circ.setAttribute('fill','rgba(0,0,0,0.2)');g.appendChild(circ);
-    const numT=document.createElementNS('http://www.w3.org/2000/svg','text');
-    numT.setAttribute('x',ncx);numT.setAttribute('y',ncy+4);numT.setAttribute('text-anchor','middle');numT.setAttribute('fill','white');numT.setAttribute('font-size','11');numT.setAttribute('font-weight','700');numT.textContent=sdg.id;g.appendChild(numT);
-    const iconSize=36,iconR=(OR+MR)/2+6,ix=CX+iconR*Math.cos(midA)-iconSize/2,iy=CY+iconR*Math.sin(midA)-iconSize/2;
-    const clipId=`clip-icon-${sdg.id}`,cp=document.createElementNS('http://www.w3.org/2000/svg','clipPath');cp.setAttribute('id',clipId);
-    const cpPath=document.createElementNS('http://www.w3.org/2000/svg','path');cpPath.setAttribute('d',arcPath(CX,CY,MR+2,OR-2,a1,a2));cp.appendChild(cpPath);svg.insertBefore(cp,svg.firstChild);
-    const img=document.createElementNS('http://www.w3.org/2000/svg','image');img.setAttribute('href',iconURLs[sdg.id]);img.setAttribute('x',ix);img.setAttribute('y',iy);img.setAttribute('width',iconSize);img.setAttribute('height',iconSize);img.setAttribute('clip-path',`url(#${clipId})`);img.setAttribute('transform',`rotate(${(midA*(180/Math.PI))+90}, ${CX+iconR*Math.cos(midA)}, ${CY+iconR*Math.sin(midA)})`);g.appendChild(img);
-    g.addEventListener('click',()=>selectSDG(sdg.id));svg.appendChild(g);
+const iconMap={1:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-01.jpg",2:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-02.jpg",3:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-03.jpg",4:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-04.jpg",5:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-05.jpg",6:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-06.jpg",7:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-07.jpg",8:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-08.jpg",9:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-09.jpg",10:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-10.jpg",11:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-11.jpg",12:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-12.jpg",13:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-13.jpg",14:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-14.jpg",15:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-15.jpg",16:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-16.jpg",17:"https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-17.jpg"};
+const svgWheel = document.getElementById('wheel'), CX=260,CY=260,OR=240,MR=152,IR=105,N=17,GAP=0.018;
+function polar(cx,cy,r,a){return [cx+r*Math.cos(a),cy+r*Math.sin(a)];}
+function arcPath(cx,cy,r1,r2,a1,a2){let p1=polar(cx,cy,r2,a1),p2=polar(cx,cy,r2,a2),p3=polar(cx,cy,r1,a2),p4=polar(cx,cy,r1,a1);return `M${p1[0]},${p1[1]} A${r2},${r2} 0 0,1 ${p2[0]},${p2[1]} L${p3[0]},${p3[1]} A${r1},${r1} 0 0,0 ${p4[0]},${p4[1]} Z`;}
+let startAng=-Math.PI/2, slice=(2*Math.PI)/N;
+sdgList.forEach((sdg,i)=>{
+    let a1=startAng+i*slice+GAP, a2=startAng+(i+1)*slice-GAP, mid=(a1+a2)/2;
+    let g=document.createElementNS('http://www.w3.org/2000/svg','g');g.setAttribute('class','seg');g.dataset.id=sdg.id;
+    let path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('d',arcPath(CX,CY,MR,OR,a1,a2));path.setAttribute('fill',sdg.color);g.appendChild(path);
+    let inner=document.createElementNS('http://www.w3.org/2000/svg','path');inner.setAttribute('d',arcPath(CX,CY,IR,MR-2,a1+GAP*2,a2-GAP*2));inner.setAttribute('fill',sdg.color);inner.setAttribute('opacity','0.3');g.appendChild(inner);
+    let numR=MR-14, ncx=CX+numR*Math.cos(mid), ncy=CY+numR*Math.sin(mid);
+    let circ=document.createElementNS('http://www.w3.org/2000/svg','circle');circ.setAttribute('cx',ncx);circ.setAttribute('cy',ncy);circ.setAttribute('r',13);circ.setAttribute('fill','rgba(0,0,0,0.6)');g.appendChild(circ);
+    let numT=document.createElementNS('http://www.w3.org/2000/svg','text');numT.setAttribute('x',ncx);numT.setAttribute('y',ncy+4);numT.setAttribute('text-anchor','middle');numT.setAttribute('fill','white');numT.setAttribute('font-size','11');numT.setAttribute('font-weight','700');numT.textContent=sdg.id;g.appendChild(numT);
+    let iconSize=36,iconR=(OR+MR)/2+4, ix=CX+iconR*Math.cos(mid)-iconSize/2, iy=CY+iconR*Math.sin(mid)-iconSize/2;
+    let clipId=`clip-${sdg.id}`, cp=document.createElementNS('http://www.w3.org/2000/svg','clipPath');cp.setAttribute('id',clipId);let cpPath=document.createElementNS('http://www.w3.org/2000/svg','path');cpPath.setAttribute('d',arcPath(CX,CY,MR+2,OR-2,a1,a2));cp.appendChild(cpPath);svgWheel.appendChild(cp);
+    let img=document.createElementNS('http://www.w3.org/2000/svg','image');img.setAttribute('href',iconMap[sdg.id]);img.setAttribute('x',ix);img.setAttribute('y',iy);img.setAttribute('width',iconSize);img.setAttribute('height',iconSize);img.setAttribute('clip-path',`url(#${clipId})`);img.setAttribute('transform',`rotate(${mid*180/Math.PI+90}, ${CX+iconR*Math.cos(mid)}, ${CY+iconR*Math.sin(mid)})`);g.appendChild(img);
+    g.addEventListener('click',()=>selectSDG(sdg.id));svgWheel.appendChild(g);
 });
-const cc=document.createElementNS('http://www.w3.org/2000/svg','circle');cc.setAttribute('cx',CX);cc.setAttribute('cy',CY);cc.setAttribute('r',IR-2);cc.setAttribute('fill','white');svg.appendChild(cc);
-const unLogo=document.createElementNS('http://www.w3.org/2000/svg','image');unLogo.setAttribute('href','https://upload.wikimedia.org/wikipedia/commons/e/ee/UN_emblem_blue.svg');unLogo.setAttribute('x',CX-45);unLogo.setAttribute('y',CY-45);unLogo.setAttribute('width',90);unLogo.setAttribute('height',90);svg.appendChild(unLogo);
+let centerCirc=document.createElementNS('http://www.w3.org/2000/svg','circle');centerCirc.setAttribute('cx',CX);centerCirc.setAttribute('cy',CY);centerCirc.setAttribute('r',IR-3);centerCirc.setAttribute('fill','white');svgWheel.appendChild(centerCirc);
+let unLogo2=document.createElementNS('http://www.w3.org/2000/svg','image');unLogo2.setAttribute('href','https://upload.wikimedia.org/wikipedia/commons/e/ee/UN_emblem_blue.svg');unLogo2.setAttribute('x',CX-42);unLogo2.setAttribute('y',CY-42);unLogo2.setAttribute('width',84);unLogo2.setAttribute('height',84);svgWheel.appendChild(unLogo2);
 function selectSDG(id){
     document.querySelectorAll('.seg').forEach(s=>s.classList.remove('active'));
-    const seg=document.querySelector(`.seg[data-id="${id}"]`);if(seg)seg.classList.add('active');
-    const sdg=SDGs.find(s=>s.id===id);if(!sdg)return;
-    document.getElementById('ic-label').textContent=`Sustainable Development Goal ${sdg.id}`;document.getElementById('ic-label').style.color=sdg.color;
-    document.getElementById('ic-title').textContent=sdg.name;document.getElementById('ic-desc').textContent=sdg.desc;
-    const btn=document.getElementById('ic-btn');btn.style.color=sdg.color;btn.style.borderColor=sdg.color;btn.href=`https://sdgs.un.org/goals/goal${sdg.id}`;
-    document.getElementById('ic-targets').innerHTML=sdg.targets.map(t=>`<div class="target"><div><div class="target-label" style="color:${sdg.color}">${t.n}</div><div class="target-desc">${t.t}</div></div></div>`).join('');
+    let segSel=document.querySelector(`.seg[data-id="${id}"]`);if(segSel)segSel.classList.add('active');
+    let s=sdgList.find(s=>s.id===id);if(!s)return;
+    document.getElementById('ic-label').innerHTML=`Sustainable Development Goal ${s.id}`;document.getElementById('ic-label').style.color=s.color;
+    document.getElementById('ic-title').innerText=s.name;document.getElementById('ic-desc').innerText=s.desc;
+    let btn=document.getElementById('ic-btn');btn.style.color=s.color;btn.style.borderColor=s.color;btn.href=`https://sdgs.un.org/goals/goal${s.id}`;
+    document.getElementById('ic-targets').innerHTML=s.targets.map(t=>`<div class="target"><div><div class="target-label" style="color:${s.color}">${t.n}</div><div class="target-desc">${t.t}</div></div></div>`).join('');
 }
 selectSDG(1);
 </script>
