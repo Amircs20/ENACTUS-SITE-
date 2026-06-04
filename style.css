@@ -535,62 +535,6 @@ footer .social-footer a:hover { opacity: 0.6; }
     height: 220px;
     object-fit: cover;
 }
-
-/* ---- JOIN US PAGE ---- */
-.form-control, .form-select {
-    background-color: #1e1e1e !important;
-    border: 1px solid #333 !important;
-    color: white !important;
-    padding: 12px;
-    transition: all 0.3s;
-    border-radius: 8px;
-}
-.form-control:focus, .form-select:focus {
-    border-color: var(--yellow) !important;
-    box-shadow: 0 0 0 3px rgba(255,193,7,0.15) !important;
-    outline: none;
-}
-.form-control::placeholder { color: #555; }
-.form-select option { background: #1e1e1e; }
-
-.btn-enactus {
-    background: var(--yellow);
-    color: #000;
-    font-weight: 800;
-    padding: 14px;
-    border: none;
-    border-radius: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    transition: 0.35s;
-    width: 100%;
-}
-.btn-enactus:hover {
-    background: #fff;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(255,193,7,0.3);
-}
-
-/* ---- ANIMATIONS & GLOW ---- */
-@keyframes pulse {
-    0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.8; }
-    50% { transform: translateX(-50%) scale(1.1); opacity: 1; }
-}
-
-/* ---- RESPONSIVE ---- */
-@media (max-width: 768px) {
-    .hero h1 { font-size: 3rem; }
-    .hero-logo { width: 90px; }
-    .hero-buttons { flex-direction: column; align-items: center; }
-    .info-card { flex-direction: column; }
-    .info-left { flex: none; width: 100%; }
-    .wheel-wrap { width: 300px; height: 300px; }
-    .stat-number { font-size: 2rem; }
-}
-@media (max-width: 576px) {
-    .wheel-wrap { width: 260px; height: 260px; }
-    .team-img { width: 120px; height: 170px; }
-}
 /* ===== EXPERIENCE SECTION UPGRADE ===== */
 .experience-section {
     background: radial-gradient(circle at top, #0a0a0a, #000);
@@ -685,4 +629,61 @@ footer .social-footer a:hover { opacity: 0.6; }
     margin-top: 12px;
     color: #fcc203;
     letter-spacing: 2px;
+}
+
+
+/* ---- JOIN US PAGE ---- */
+.form-control, .form-select {
+    background-color: #1e1e1e !important;
+    border: 1px solid #333 !important;
+    color: white !important;
+    padding: 12px;
+    transition: all 0.3s;
+    border-radius: 8px;
+}
+.form-control:focus, .form-select:focus {
+    border-color: var(--yellow) !important;
+    box-shadow: 0 0 0 3px rgba(255,193,7,0.15) !important;
+    outline: none;
+}
+.form-control::placeholder { color: #555; }
+.form-select option { background: #1e1e1e; }
+
+.btn-enactus {
+    background: var(--yellow);
+    color: #000;
+    font-weight: 800;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: 0.35s;
+    width: 100%;
+}
+.btn-enactus:hover {
+    background: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255,193,7,0.3);
+}
+
+/* ---- ANIMATIONS & GLOW ---- */
+@keyframes pulse {
+    0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.8; }
+    50% { transform: translateX(-50%) scale(1.1); opacity: 1; }
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 3rem; }
+    .hero-logo { width: 90px; }
+    .hero-buttons { flex-direction: column; align-items: center; }
+    .info-card { flex-direction: column; }
+    .info-left { flex: none; width: 100%; }
+    .wheel-wrap { width: 300px; height: 300px; }
+    .stat-number { font-size: 2rem; }
+}
+@media (max-width: 576px) {
+    .wheel-wrap { width: 260px; height: 260px; }
+    .team-img { width: 120px; height: 170px; }
 }
