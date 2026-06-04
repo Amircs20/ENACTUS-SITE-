@@ -591,3 +591,98 @@ footer .social-footer a:hover { opacity: 0.6; }
     .wheel-wrap { width: 260px; height: 260px; }
     .team-img { width: 120px; height: 170px; }
 }
+/* ===== EXPERIENCE SECTION UPGRADE ===== */
+.experience-section {
+    background: radial-gradient(circle at top, #0a0a0a, #000);
+    padding: 80px 0;
+}
+
+/* Title */
+.experience-section h2 {
+    color: #fff;
+}
+
+.experience-section h5 {
+    letter-spacing: 2px;
+}
+
+/* Card */
+.exp-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 193, 7, 0.15);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    padding: 25px;
+    color: #fff;
+    transition: 0.4s ease;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glow effect */
+.exp-card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(252,194,3,0.15), transparent 60%);
+    transform: rotate(0deg);
+    transition: 0.6s;
+    opacity: 0;
+}
+
+.exp-card:hover::before {
+    opacity: 1;
+}
+
+/* Hover animation */
+.exp-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: rgba(252, 194, 3, 0.6);
+    box-shadow: 0 15px 40px rgba(252, 194, 3, 0.15);
+}
+
+/* Header inside card */
+.exp-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+/* Avatar */
+.exp-header img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fcc203;
+}
+
+/* Name */
+.exp-name {
+    font-weight: 700;
+    margin: 0;
+}
+
+.exp-role {
+    font-size: 13px;
+    color: #aaa;
+}
+
+/* Quote */
+.exp-text {
+    color: #ddd;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Stars */
+.exp-stars {
+    margin-top: 12px;
+    color: #fcc203;
+    letter-spacing: 2px;
+}
