@@ -8,169 +8,180 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+<link href="style.css" rel="stylesheet">
+
 <style>
-/* ================= BASE ================= */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #000;
-    color: white;
-    overflow-x: hidden;
+/* ================= BACKGROUND ================= */
+body{
+    margin:0;
+    background:#000;
+    color:white;
+    overflow:hidden;
 }
 
-/* ================= STAR BACKGROUND ================= */
-.stars {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    background: transparent;
+/* ================= STAR FIELD ================= */
+.stars{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:0;
 }
 
-.star {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.5;
-    animation: twinkle 3s infinite ease-in-out;
+.star{
+    position:absolute;
+    width:3px;
+    height:3px;
+    background:#fcc203; /* 🔥 yellow Enactus */
+    border-radius:50%;
+    opacity:0.6;
+    box-shadow:0 0 10px #fcc203, 0 0 20px rgba(252,194,3,0.5);
+    animation:twinkle 3s infinite ease-in-out;
 }
 
-@keyframes twinkle {
-    0%, 100% { opacity: 0.2; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.8); }
+@keyframes twinkle{
+    0%,100%{transform:scale(1);opacity:0.3;}
+    50%{transform:scale(1.8);opacity:1;}
 }
 
-/* ================= NAV ================= */
-.navbar {
-    z-index: 10;
+/* ================= CENTER CARD ================= */
+.center{
+    position:relative;
+    z-index:2;
+    height:90vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
 }
 
-/* ================= CENTER CONTENT ================= */
-.container-center {
-    position: relative;
-    z-index: 2;
-    height: 90vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+.card-coming{
+    padding:60px;
+    border-radius:25px;
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(252,194,3,0.2);
+    backdrop-filter:blur(12px);
+    box-shadow:0 0 40px rgba(252,194,3,0.15);
+    animation:float 4s ease-in-out infinite;
+    max-width:600px;
 }
 
-/* ================= GLASS CARD ================= */
-.card-coming {
-    padding: 50px 60px;
-    border-radius: 25px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    box-shadow: 0 0 40px rgba(252, 194, 3, 0.15);
-    animation: float 4s ease-in-out infinite;
-    max-width: 600px;
-}
-
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-12px); }
-    100% { transform: translateY(0px); }
+@keyframes float{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-12px);}
+    100%{transform:translateY(0);}
 }
 
 /* ================= TEXT ================= */
-.title {
-    font-size: 3rem;
-    font-weight: 900;
-    color: #fcc203;
-    letter-spacing: 2px;
+.title{
+    font-size:3rem;
+    font-weight:900;
+    color:#fcc203;
+    letter-spacing:2px;
 }
 
-.subtitle {
-    color: #bbb;
-    margin-top: 15px;
-    font-size: 1.1rem;
+.subtitle{
+    margin-top:15px;
+    color:#ccc;
+    font-size:1.1rem;
 }
 
-.badge-coming {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 6px 15px;
-    border-radius: 50px;
-    border: 1px solid #fcc203;
-    color: #fcc203;
-    font-size: 0.9rem;
+.badge{
+    display:inline-block;
+    margin-bottom:15px;
+    padding:6px 14px;
+    border-radius:50px;
+    border:1px solid #fcc203;
+    color:#fcc203;
+    font-size:0.85rem;
 }
 
 /* ================= BUTTON ================= */
-.btn-join {
-    margin-top: 25px;
-    display: inline-block;
-    padding: 10px 25px;
-    border-radius: 50px;
-    border: 1px solid #fcc203;
-    color: #fcc203;
-    text-decoration: none;
-    transition: 0.3s;
+.btn-back{
+    margin-top:25px;
+    display:inline-block;
+    padding:10px 25px;
+    border-radius:50px;
+    border:1px solid #fcc203;
+    color:#fcc203;
+    text-decoration:none;
+    transition:0.3s;
 }
 
-.btn-join:hover {
-    background: #fcc203;
-    color: #000;
+.btn-back:hover{
+    background:#fcc203;
+    color:#000;
 }
 </style>
 </head>
 
 <body>
 
-<!-- STAR BACKGROUND -->
-<div class="stars" id="stars"></div>
-
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-md navbar-dark p-3">
+<!-- ================= KEEP YOUR NAVBAR ================= -->
+<nav class="navbar navbar-expand-md p-2 sticky-top custom-nav">
     <div class="container-fluid">
-        <a class="navbar-brand text-warning fw-bold" href="index.html">
-            Enactus ISTIC
+        <a class="navbar-brand" href="index.html">
+            <img src="logo.jpg" class="rounded-circle logo-nav border border-dark" style="width:45px;">
         </a>
+
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav align-items-center">
+                <li class="nav-item"><a href="index.html" class="nav-link">HOME</a></li>
+                <li class="nav-item"><a href="events.html" class="nav-link">EVENTS</a></li>
+                <li class="nav-item"><a href="index.html#about" class="nav-link">ABOUT US</a></li>
+                <li class="nav-item"><a href="index.html#partners" class="nav-link">PARTNERS</a></li>
+            </ul>
+        </div>
+
+        <div class="d-none d-md-block">
+            <a href="joinus.html" class="btn-join active">JOIN US</a>
+        </div>
     </div>
 </nav>
 
-<!-- MAIN CONTENT -->
-<section class="container-center">
+<!-- ================= CONTENT ================= -->
+<section class="center">
     <div class="card-coming">
-        <div class="badge-coming">COMING SOON</div>
+        <div class="badge">COMING SOON</div>
         <div class="title">JOIN US 🚀</div>
         <div class="subtitle">
-            We are preparing something powerful for the next Enactus ISTIC recruitment wave.
-            <br>
-            Stay tuned — opportunities are coming soon.
+            Recruitment is opening soon.<br>
+            Get ready to join Enactus ISTIC and create real impact.
         </div>
 
-        <a href="index.html" class="btn-join">Back to Home</a>
+        <a href="index.html" class="btn-back">Back to Home</a>
     </div>
 </section>
 
+<!-- ================= YELLOW STARS SCRIPT ================= -->
+<div class="stars" id="stars"></div>
+
 <script>
-/* ================= STAR GENERATOR ================= */
 const starsContainer = document.getElementById("stars");
 
-for (let i = 0; i < 120; i++) {
-    let star = document.createElement("div");
+for(let i=0;i<140;i++){
+    let star=document.createElement("div");
     star.classList.add("star");
 
-    star.style.top = Math.random() * 100 + "vh";
-    star.style.left = Math.random() * 100 + "vw";
+    star.style.top=Math.random()*100+"vh";
+    star.style.left=Math.random()*100+"vw";
 
-    let size = Math.random() * 2 + 1;
-    star.style.width = size + "px";
-    star.style.height = size + "px";
+    let size=Math.random()*2+1;
+    star.style.width=size+"px";
+    star.style.height=size+"px";
 
-    star.style.animationDuration = (Math.random() * 3 + 2) + "s";
-    star.style.opacity = Math.random();
+    star.style.animationDuration=(Math.random()*3+2)+"s";
+    star.style.opacity=Math.random();
 
     starsContainer.appendChild(star);
 }
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
